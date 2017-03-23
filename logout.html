@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>mikrotik hotspot > logout</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body { 
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+</head>
+
+<body>
+<script language="JavaScript">
+<!--
+    function openLogin() {
+	if (window.name != 'hotspot_logout') return true;
+	open('$(link-login)', '_blank', '');
+	window.close();
+	return false;
+    }
+//-->
+</script>
+<div class="page-header" align="center">
+	<!-- TODO:
+	*	Change To fit your Hotspot name
+	*	Ganti ke nama Hotspot anda
+	-->
+  <h1 style="color:#323131;text-shadow: 2px 2px 4px #FFFFFF;">iBNuX hotspot<br />
+	<small>Wireless Internet</small></h1>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">you have just logged out</h3>
+				</div>
+				<table class="table" border="1">  
+				<tr><td align="right">user name</td><td>$(username)</td></tr>
+				<tr><td align="right">IP address</td><td>$(ip)</td></tr>
+				<tr><td align="right">MAC address</td><td>$(mac)</td></tr>
+				<tr><td align="right">session time</td><td>$(uptime)</td></tr>
+				$(if session-time-left)
+				<tr><td align="right">time left</td><td>$(session-time-left)</td></tr>
+				$(endif)
+				<tr><td align="right">bytes up/down:</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+				</table>
+				<div class="panel-footer">
+					<form action="$(link-login)" name="login" onSubmit="return openLogin()">
+						<input type="submit" class="btn btn-primary btn-block" value="log in">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

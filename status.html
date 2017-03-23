@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Status - Internet Hotspot</title>
+$(if refresh-timeout)
+<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+$(endif)
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body { 
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+<script language="JavaScript">
+<!--
+$(if advert-pending == 'yes')
+    var popup = '';
+    function focusAdvert() {
+	if (window.focus) popup.focus();
+    }
+    function openAdvert() {
+	popup = open('$(link-advert)', 'hotspot_advert', '');
+	setTimeout("focusAdvert()", 1000);
+    }
+$(endif)
+    function openLogout() {
+	if (window.name != 'hotspot_status') return true;
+        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+	window.close();
+	return false;
+    }
+//-->
+</script>
+</head>
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
+$(if advert-pending == 'yes')
+	onLoad="openAdvert()"
+$(endif)
+>
+
+<div class="page-header" align="center">
+	<!-- TODO:
+	*	Change To fit your Hotspot name
+	*	Ganti ke nama Hotspot anda
+	-->
+  <h1 style="color:#323131;text-shadow: 2px 2px 4px #FFFFFF;">iBNuX Hotspot<br />
+	<small>Wireless Internet</small></h1>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				$(if login-by == 'trial')
+					<div class="panel-heading">
+						<h3 class="panel-title">Welcome trial user!</h3>
+					</div>
+				$(elif login-by != 'mac')
+					<div class="panel-heading">
+						<h3 class="panel-title">Welcome $(username)!</h3>
+					</div>
+				$(elif login-by-mac != 'yes')
+					<div class="panel-heading">
+						<h3 class="panel-title">Welcome!</h3>
+					</div>
+				$(endif)
+				<table border="1" class="table">
+					<tr><td align="right">IP address:</td><td>$(ip)</td></tr>
+					<tr><td align="right">bytes up/down:</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+				$(if session-time-left)
+					<tr><td align="right">connected / left:</td><td>$(uptime) / $(session-time-left)</td></tr>
+				$(else)
+					<tr><td align="right">connected:</td><td>$(uptime)</td></tr>
+				$(endif)
+				$(if blocked == 'yes')
+					<tr><td align="right">status:</td><td><div style="color: #FF8080">
+				<a href="$(link-advert)" target="hotspot_advert">advertisement</a> required</div></td>
+				$(elif refresh-timeout)
+					<tr><td align="right">status refresh:</td><td>$(refresh-timeout)</td>
+				$(endif)
+
+				</table>
+				$(if login-by-mac != 'yes')
+				
+				<!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+				<button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+				<!-- end of user manager link -->
+				<div class="panel-footer">
+					<!-- TODO:
+					*	Change url to your phpmixbill url, to login page
+					*	Ganti url ke alamat server phpmixbill, ke halaman login
+					-->
+					<a href="http://billing.ibnux.com" class="btn btn-block btn-primary" target="_blank">Billing/Voucher Info</a>
+				</div>
+				<div class="panel-footer">
+					<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+						<input type="submit" class="btn btn-block btn-danger" value="Log Off">
+					</form>
+				</div>
+				$(endif)
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Information</h3>
+				</div>
+				<div class="panel-body" id="Announcement"></div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Voucher Info</h3>
+				</div>
+				<div class="panel-body" id="voucherInformation"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="jquery-3.2.0.slim.min.js"></script>
+<script src="billing.js"></script>
+</body>
+</html>

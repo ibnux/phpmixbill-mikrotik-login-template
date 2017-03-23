@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Login - Internet Hotspot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body { 
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+</head>
+
+<body>
+<div class="page-header" align="center">
+	<!-- TODO:
+	*	Change To fit your Hotspot name
+	*	Ganti ke nama Hotspot anda
+	-->
+  <h1 style="color:#323131;text-shadow: 2px 2px 4px #FFFFFF;">iBNuX Hotspot<br />
+	<small>Wireless Internet</small></h1>
+</div>
+$(if error)
+<br />
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="alert alert-danger" role="alert">$(error)</div>
+		</div>
+	</div>
+	<br />
+$(endif)
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Login hotspot</h3>
+				</div>
+				<form class="form" name="login" action="$(link-login-only)" method="post"
+					$(if chap-id) onSubmit="return doLogin()" $(endif)>
+					<input type="hidden" name="dst" value="$(link-orig)" />
+					<input type="hidden" name="popup" value="true" />
+					
+						<table class="table" width="100" style="background-color: #ffffff">
+							<tr><td align="right">Username</td>
+									<td><input class="form-control" name="username" type="text" value="$(username)"/></td>
+							</tr>
+							<tr><td align="right">Password</td>
+									<td><input class="form-control" name="password" type="password"/></td>
+							</tr>
+							<tr><td><a href="http://billing.ibnux.net" class="btn btn-block btn-success">Register<a></td>
+									<td><input type="submit" class="btn btn-block btn-primary" value="ENTER" /></td>
+							</tr>
+						</table>
+				</form>
+				$(if trial == 'yes')
+				<div class="panel-footer">
+					<a class="btn btn-block btn-info" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">Free Trial</a>
+				</div>
+				$(endif)
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Information</h3>
+				</div>
+				<div class="panel-body" id="Announcement"></div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Voucher Info</h3>
+				</div>
+				<div class="panel-body" id="voucherInformation"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+<script src="jquery-3.2.0.slim.min.js"></script>
+<script src="billing.js"></script>
+</body>
+</html>
