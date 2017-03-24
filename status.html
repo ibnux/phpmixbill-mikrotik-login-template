@@ -31,7 +31,7 @@ $(if advert-pending == 'yes')
 $(endif)
     function openLogout() {
 	if (window.name != 'hotspot_status') return true;
-        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+        open('$(link-logout)?erase-cookie=on', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
 	window.close();
 	return false;
     }
@@ -65,7 +65,7 @@ $(endif)
 					<div class="panel-heading">
 						<h3 class="panel-title">Welcome $(username)!</h3>
 					</div>
-				$(elif login-by-mac != 'yes')
+				$(else)
 					<div class="panel-heading">
 						<h3 class="panel-title">Welcome!</h3>
 					</div>
@@ -87,10 +87,6 @@ $(endif)
 
 				</table>
 				$(if login-by-mac != 'yes')
-				
-				<!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
-				<button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
-				<!-- end of user manager link -->
 				<div class="panel-footer">
 					<!-- TODO:
 					*	Change url to your phpmixbill url, to login page
@@ -100,6 +96,7 @@ $(endif)
 				</div>
 				<div class="panel-footer">
 					<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+						<input type="hidden" name="erase-cookie" value="on">
 						<input type="submit" class="btn btn-block btn-danger" value="Log Off">
 					</form>
 				</div>
