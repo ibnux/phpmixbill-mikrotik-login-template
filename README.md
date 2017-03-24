@@ -1,7 +1,8 @@
 Mikrotik Template Login for [PHPMIXBILL](https://github.com/ibnux/phpmixbill)
 ----
 
-###English
+**.:English:.**
+
 This Template is for Mikrotik Login Hotspot, just put all File inside hotspot folder in Mikrotik, overwrite all. You need to have [PHPMIXBILL](https://github.com/ibnux/phpmixbill) installed somewhere.
 
 You need to edit this file, find **TODO**, and follow instruction:
@@ -16,7 +17,9 @@ You need to edit this file, find **TODO**, and follow instruction:
 
  Delete folder remove!
 
-###Indonesia
+ 
+**.:Indonesia:.**
+
 Template ini untuk Login Hotspot Mikrotik, upload dan timpa semua file ke folder hotspot, pastikan anda juga telah memasang [PHPMIXBILL](https://github.com/ibnux/phpmixbill) di suatu server.
 
 Sebelum digunakan edit dulu file dibawah, Cari **TODO** dan ikuti petunjuknya:
@@ -30,6 +33,14 @@ Sebelum digunakan edit dulu file dibawah, Cari **TODO** dan ikuti petunjuknya:
  Ganti **background.jpg** dengan Background anda sendiri
 
  hapus folder remove!
+ 
+DONT FORGET!! JANGAN LUPA!!!
+----
+Add your phpmixbill server IP or domain to walled garden hotspot
+
+Tambahkan alamat IP atau domain Phpmixbill server ke walled garden hotspot
+
+
 
 Explanation | Penjelasan
 ----
